@@ -65,8 +65,12 @@ function registrar() {
 
     // Valida que las claves coincidan antes de guardar
     if (clave === validarClave) {
+        //push() añade el elemento al final del array
         usuarios.push(nuevoUsuario);
-        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+      // Guardamos el arreglo completo en Local Storage
+     // JSON.stringify convierte el array en texto para poder almacenarlo
+        localStorage.setItem("usuarios", JSON.stringify(usuarios)); 
         crearUsuario(id, nombre, correo, "Usuario creado con Éxito ✅");
     } else {
         console.log("La clave no coincide 🚨");
@@ -103,7 +107,10 @@ function retiros() {
     ingresaClave = prompt("Ingrese su Clave");
     let montoRetiro = parseFloat(prompt("Ingrese monto a Retirar"));
 
+
     let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    //Recorre el arreglo y devuelve el primer elemento que cumpla la condición que le indiques.
     let usuario = usuarios.find(user => user.nombre === ingresaNombre && user.clave === ingresaClave);
 
     // Validación: usuario válido, monto positivo y saldo suficiente
